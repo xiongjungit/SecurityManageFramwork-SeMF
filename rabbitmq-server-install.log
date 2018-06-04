@@ -1,0 +1,17 @@
+wget http://www.rabbitmq.com/releases/erlang/erlang-19.0.4-1.el7.centos.x86_64.rpm
+rpm -ivh erlang-19.0.4-1.el7.centos.x86_64.rpm
+yum -y install erlang
+erl -version
+yum install rabbitmq-server-3.6.9-1.el7.noarch.rpm
+service rabbitmq-server start
+systemctl status rabbitmq-server.service
+rabbitmq-plugins enable rabbitmq_management
+rabbitmqctl add_user admin admin
+rabbitmqctl add_vhost semf
+rabbitmqctl set_user_tags semf administrator
+rabbitmqctl set_user_tags admin administrator
+rabbitmqctl add_user semf semf
+rabbitmqctl set_user_tags semf administrator
+rabbitmqctl set_user_tags semf management
+rabbitmqctl set_permissions -p semf semf ".*" ".*" ".*"
+rabbitmqctl set_permissions -p semf admin ".*" ".*" ".*"
