@@ -1,0 +1,16 @@
+cd github/
+git clone https://gitee.com/gy071089/SecurityManageFramwork
+cd SecurityManageFramwork/
+pip3 install -r requirements.txt 
+cd SeMF
+vim settings.py 
+cd ..
+python3 manage.py makemigrations
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createsuperuser
+python3 initdata.py
+python3 cnvd_xml.py 
+pip3 install celery
+/usr/local/python3/bin/celery -A SeMF worker -l info 
+python3 manage.py runserver 0.0.0.0:8000
